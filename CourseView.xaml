@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGUAppV2.CourseView"
+             Title="Course View">
+
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Course Name:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding CourseName}" FontSize="18" />
+
+            <Label Text="Start Date:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding Start, StringFormat='{0:MM/dd/yyyy}'}" FontSize="18" />
+            <Picker x:Name="startNotificationPicker" Title="Notify me before start date">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:Int32}">
+                        <x:Int32>1</x:Int32>
+                        <x:Int32>10</x:Int32>
+                        <x:Int32>30</x:Int32>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="End Date:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding End, StringFormat='{0:MM/dd/yyyy}'}" FontSize="18" />
+            <Picker x:Name="endNotificationPicker" Title="Notify me before end date">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:Int32}">
+                        <x:Int32>1</x:Int32>
+                        <x:Int32>10</x:Int32>
+                        <x:Int32>30</x:Int32>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Course Status:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding CourseStatus}" FontSize="18" />
+
+            <Label Text="Instructor Name:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding Instructor}" FontSize="18" />
+
+            <Label Text="Instructor Phone:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding Phone}" FontSize="18" />
+
+            <Label Text="Instructor Email:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding Email}" FontSize="18" />
+
+            <Label Text="Objective Assessment Name:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding OaName}" FontSize="18" />
+
+            <Label Text="Objective Assessment Start Date:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding OaStart, StringFormat='{0:MM/dd/yyyy}'}" FontSize="18" />
+
+            <Label Text="Objective Assessment End Date:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding OaEnd, StringFormat='{0:MM/dd/yyyy}'}" FontSize="18" />
+
+            <Label Text="Performance Assessment Name:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding PaName}" FontSize="18" />
+
+            <Label Text="Performance Assessment Start Date:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding PaStart, StringFormat='{0:MM/dd/yyyy}'}" FontSize="18" />
+
+            <Label Text="Performance Assessment End Date:" FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding PaEnd, StringFormat='{0:MM/dd/yyyy}'}" FontSize="18" />
+
+            <Label Text="Notes:" FontSize="20" FontAttributes="Bold" />
+            <Editor Text="{Binding Notes}" IsReadOnly="True" FontSize="18" HeightRequest="100" />
+
+            <Button Text="Share Notes" Clicked="OnShareNotesClicked" />
+            <Button Text="Notify Course Dates" Clicked="NotifyCourseDatesClicked"/>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

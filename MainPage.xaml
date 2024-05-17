@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGUAppV2.MainPage"
+             Title="Terms">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- For Button -->
+            <RowDefinition Height="Auto" />
+            <!-- For Entry Forms -->
+            <RowDefinition Height="*" />
+            <!-- For ListView -->
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Text="Add Term / Edit Term (Expand / Collapse)" Clicked="ToggleAddTermSection" />
+
+        <!-- Collapsible Add Term Section -->
+        <VerticalStackLayout Grid.Row="1" IsVisible="{Binding IsAddTermVisible}" Padding="10" BackgroundColor="Beige">
+            <Entry x:Name="termNameEntryField" Placeholder="Term Name" />
+            <DatePicker x:Name="termStartPicker" Date="{Binding TermStartDate, StringFormat='{0:yyyy/MM/dd}'}" />
+            <DatePicker x:Name="termEndPicker" Date="{Binding TermEndDate, StringFormat='{0:yyyy/MM/dd}'}" />
+            <Button x:Name="saveButton" Text="Save" Clicked="saveButton_Clicked" />
+        </VerticalStackLayout>
+
+        <ListView Grid.Row="2" x:Name="termListView" HasUnevenRows="True" ItemTapped="termListView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <VerticalStackLayout Padding="5">
+                            <Label Text="{Binding TermName}" FontSize="17" FontAttributes="Bold" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding Start, StringFormat='Start: {0:yyyy/MM/dd}'}" />
+                                <Label Grid.Column="2" Text="{Binding End, StringFormat='End: {0:yyyy/MM/dd}'}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+</ContentPage>
