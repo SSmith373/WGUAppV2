@@ -35,16 +35,40 @@ public partial class CourseView : ContentPage
 
         var notification = new NotificationRequest
         {
-            NotificationId = new Random().Next(), // Ensure unique ID
+            NotificationId = new Random().Next(), // Ensures unique ID
             Title = $"Reminder for {Course.CourseName}",
             Description = $"Course starts on {courseStartDate} and ends on {courseEndDate}",
-            ReturningData = "Detailed data here", // Optional data that is returned to the app when tapped
             Android = new Plugin.LocalNotification.AndroidOption.AndroidOptions
             {
                 ChannelId = "course_notifications"
             }
         };
 
+        LocalNotificationCenter.Current.Show(notification);
+    }
+
+    private void NotifyAssessmentDatesClicked(object sender, EventArgs e)
+    {
+        // Format the start and end dates for both assessments
+        var oaStartDate = Course.OaStart.ToString("MM/dd/yyyy");
+        var oaEndDate = Course.OaEnd.ToString("MM/dd/yyyy");
+        var paStartDate = Course.PaStart.ToString("MM/dd/yyyy");
+        var paEndDate = Course.PaEnd.ToString("MM/dd/yyyy");
+
+        // Create the notification content
+        var notification = new NotificationRequest
+        {
+            NotificationId = new Random().Next(), // Ensures unique ID
+            Title = "Assessment Dates",
+            Description = $"Objective Assessment: {oaStartDate} to {oaEndDate}\n" +
+                          $"Performance Assessment: {paStartDate} to {paEndDate}",
+            Android = new Plugin.LocalNotification.AndroidOption.AndroidOptions
+            {
+                ChannelId = "course_notifications" 
+            }
+        };
+
+        // Show the notification
         LocalNotificationCenter.Current.Show(notification);
     }
 
