@@ -11,28 +11,10 @@
 
             <Label Text="Start Date:" FontSize="20" FontAttributes="Bold" />
             <Label Text="{Binding Start, StringFormat='{0:MM/dd/yyyy}'}" FontSize="18" />
-            <Picker x:Name="startNotificationPicker" Title="Notify me before start date">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:Int32}">
-                        <x:Int32>1</x:Int32>
-                        <x:Int32>10</x:Int32>
-                        <x:Int32>30</x:Int32>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-
+            
             <Label Text="End Date:" FontSize="20" FontAttributes="Bold" />
             <Label Text="{Binding End, StringFormat='{0:MM/dd/yyyy}'}" FontSize="18" />
-            <Picker x:Name="endNotificationPicker" Title="Notify me before end date">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:Int32}">
-                        <x:Int32>1</x:Int32>
-                        <x:Int32>10</x:Int32>
-                        <x:Int32>30</x:Int32>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-
+            
             <Label Text="Course Status:" FontSize="20" FontAttributes="Bold" />
             <Label Text="{Binding CourseStatus}" FontSize="18" />
 
@@ -68,7 +50,6 @@
 
             <Button Text="Share Notes" Clicked="OnShareNotesClicked" />
             <Button Text="Notify Course Dates" Clicked="NotifyCourseDatesClicked"/>
-
         </StackLayout>
     </ScrollView>
 </ContentPage>
