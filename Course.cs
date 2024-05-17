@@ -11,7 +11,6 @@ using TableAttribute = System.ComponentModel.DataAnnotations.Schema.TableAttribu
 
 namespace WGUAppV2
 {
-
     [Table("Course")]
     public class Course
     {
@@ -64,5 +63,4 @@ namespace WGUAppV2
         public string Notes { get; set; } = string.Empty;
 
     }
-
 }
