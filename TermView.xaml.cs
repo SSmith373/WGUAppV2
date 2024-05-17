@@ -151,6 +151,11 @@ public partial class TermView : ContentPage
         notesEditor.Text = string.Empty;
 
         coursesListView.ItemsSource = await _dbService.GetCoursesByTermId(_termId);
+
+        // Collapse the Add Course section
+        IsAddCourseVisible = false;
+        OnPropertyChanged(nameof(IsAddCourseVisible));
+
     }
 
     private async void coursesListView_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -165,6 +170,10 @@ public partial class TermView : ContentPage
                 break;
 
             case "Edit":
+
+                IsAddCourseVisible = true;
+                OnPropertyChanged(nameof(IsAddCourseVisible));
+
                 courseNameEntry.Text = course.CourseName;
                 courseStartDatePicker.Date = course.Start;
                 courseEndDatePicker.Date = course.End;

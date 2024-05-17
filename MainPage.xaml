@@ -12,6 +12,8 @@
             <!-- For Entry Forms -->
             <RowDefinition Height="*" />
             <!-- For ListView -->
+            <RowDefinition Height="Auto" />
+            <!-- For Example Data Button -->
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" Text="Add Term / Edit Term (Expand / Collapse)" Clicked="ToggleAddTermSection" />
@@ -44,5 +46,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <!-- Example Data Button -->
+        <Button Grid.Row="3" Text="Evaluation Data: CLICK ME" Clicked="OnEvaluationDataClicked"/>
     </Grid>
 </ContentPage>

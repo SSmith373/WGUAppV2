@@ -67,6 +67,10 @@
 
             termListView.ItemsSource = await _dbService.GetTerm();
 
+            // Collapse the Add Term section
+            IsAddTermVisible = false;
+            OnPropertyChanged(nameof(IsAddTermVisible));
+
         }
 
         private async void termListView_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -77,6 +81,9 @@
             switch (action)
             {
                 case "Edit":
+
+                    IsAddTermVisible = true; // Expand the Add Term section
+                    OnPropertyChanged(nameof(IsAddTermVisible));
 
                     _editTermId = term.TermId;
                     termNameEntryField.Text = term.TermName;
@@ -94,6 +101,45 @@
                     await Navigation.PushAsync(new TermView(term.TermId, term.TermName, term.Start, term.End, _dbService));
                     break;
             }
+        }
+
+        private async void OnEvaluationDataClicked(object sender, EventArgs e)
+        {
+            // Create a term
+            var term = new Term
+            {
+                TermName = "Spring Term",
+                Start = new DateTime(2024, 6, 1),
+                End = new DateTime(2024, 6, 30)
+            };
+            await _dbService.Create(term);
+
+            // Create a course within that term
+            var course = new Course
+            {
+                TermId = term.TermId,
+                CourseName = "Mobile App Class",
+                Start = new DateTime(2024, 6, 1),
+                End = new DateTime(2024, 6, 30),
+                CourseStatus = "In Progress",
+                Instructor = "Anika Patel",
+                Phone = "555-123-4567",
+                Email = "anika.patel@strimeuniversity.edu",
+                OaName = "OA 1",
+                OaStart = new DateTime(2024, 6, 20),
+                OaEnd = new DateTime(2024, 6, 25),
+                PaName = "PA 1",
+                PaStart = new DateTime(2024, 6, 20),
+                PaEnd = new DateTime(2024, 6, 25),
+                Notes = "Here are my example notes"
+            };
+            await _dbService.CreateCourse(course);
+
+            // Display a message to the user
+            await DisplayAlert("Success", "Evaluation data has been added.", "OK");
+
+            // Refresh the term list to include the new term
+            termListView.ItemsSource = await _dbService.GetTerm();
         }
 
     }
