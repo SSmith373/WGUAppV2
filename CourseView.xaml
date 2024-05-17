@@ -50,7 +50,6 @@
 
             <Button Text="Share Notes" Clicked="OnShareNotesClicked" />
             <Button Text="Notify Course Dates" Clicked="NotifyCourseDatesClicked"/>
-
         </StackLayout>
     </ScrollView>
 </ContentPage>
